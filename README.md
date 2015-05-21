@@ -9,6 +9,8 @@ Some of the programs are filtered into certain folders/trash automatically.
 Installation
 ------------
 You must have Python 3 installed on your computer. Just run the script! :)
+Some third party libraries are required. With Python 3 installed, you need to run:
+pip3 install pyperclip
 
 Support
 -------
