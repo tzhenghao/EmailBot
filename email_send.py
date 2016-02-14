@@ -10,6 +10,9 @@
 import os, re, logging, sys
 import smtplib
 
+import email_setup
+
+
 # Load usernames and passwords.
 os.system('source ~/secrets.sh')
 
@@ -21,15 +24,6 @@ OUTLOOK_PASSWORD = os.environ.get("OUTLOOK_PASSWORD")
 
 GMAIL_USERNAME = os.environ.get("GMAIL_USERNAME")
 GMAIL_PASSWORD = os.environ.get("GMAIL_PASSWORD")
-
-# EFFECTS: Logs in to the appropriate email provider.
-def loginEmail(emailAddress):
-	if emailAddress == GMAIL:
-		loginGmail(emailAddress)
-	elif emailAddress == OUTLOOK:
-		loginOutlook(emailAddress)
-	elif emailAddress == HOTMAIL:
-		loginGmail(emailAddress)
 
 # EFFECTS: Sends a reply based on the email address, subject and content provided.
 def sendReply(emailAddress, recipient, subject, content):
@@ -73,30 +67,11 @@ def sendReplyUMich(recipient, subject, content):
 def checkValidEmail(email):
 	return email == OUTLOOK | email == UMICH | email == GMAIL
 
-#def main():
 
 subject = 'lalala header'
 body = 'lalala body'
-
 
 # Sends the reply
 print('Sending reply...')
 sendReply('OUTLOOK', UMICH_USERNAME, subject, body)
 print('Reply sent!')
-
-	# Command line argument handling.
-	#for email in sys.argv[1:]:
-
-	#	if checkValidEmail(email) == None:
-	#		print('There is something wrong with the email provided.')
-	#		print('Please rerun the program again')
-	#		sys.exit()
-
-	#	print('Currently handling ' + email + '...')
-
-	#	#TODO
-	#	loginEmail(email)
-
-
-	#	print('Done with ' + email)
-
