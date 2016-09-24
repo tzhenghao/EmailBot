@@ -1,5 +1,8 @@
 #!/usr/local/bin/python3
 
+# Author: Zheng Hao Tan
+# Email: tanzhao@umich.edu
+
 import os
 import re
 import logging
@@ -38,6 +41,12 @@ class Outlook(Email):
     self.SMTPServerDomainName = SMTPServerDomainName
     self.SMTPServerPort = SMTPServerPort
     super(Outlook, self).__init__(username, password)
+
+    # attempt to login.
+    self.smtpObj = smtplib.SMTP(SMTPServerDomainName, SMTPServerPort)
+    self.smtpObj.ehlo()
+    self.smtpObj.starttls()
+    self.smtpObj.login(username, password)
 
 # TODO: More email providers.
 #class ICloud(Email):
